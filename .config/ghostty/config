@@ -1,0 +1,25 @@
+# New tabs
+keybind = super+backslash=new_split:right
+keybind = super+shift+backslash=new_split:down
+keybind = super+d=close_surface
+
+# Navigation
+keybind = super+j=goto_split:next
+keybind = super+k=goto_split:previous
+
+keybind = super+n=next_tab
+keybind = super+o=previous_tab
+keybind = super+shift+n=new_window
+
+# visuals
+theme = Synthwave
+macos-titlebar-style = tabs
+background-opacity = 0.92
+background-blur = 20
+font-thicken = true
+font-family = FiraCode Nerd Font
+
+split-divider-color = #00FF00
+window-padding-x = 10
+window-padding-balance = true
+unfocused-split-opacity = 0.6
