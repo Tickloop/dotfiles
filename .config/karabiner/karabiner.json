@@ -112,66 +112,6 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "w",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "f13_layer",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "f13_layer",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "backslash",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "f13_layer",
-                                        "type": "variable_if",
-                                        "value": true
-                                    }
-                                ],
-                                "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "optional": ["any"] }
                                 },
@@ -331,6 +271,141 @@
                                         "value": true
                                     }
                                 ],
+                                "description": "Keep F13-0 available to Hammerspoon",
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    { "key_code": "f13" },
+                                    { "from_event": true }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Create a right-hand Ghostty split",
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Create a lower Ghostty split",
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Create a Ghostty tab",
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Close the current Ghostty tab",
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": ["shift"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
                                 "description": "Preserve Shift on F13 pass-through shortcuts",
                                 "from": {
                                     "any": "key_code",
@@ -354,8 +429,13 @@
                                         "name": "f13_layer",
                                         "type": "variable_if",
                                         "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_if"
                                     }
                                 ],
+                                "description": "Pass F13 shortcuts through to Neovim in Ghostty",
                                 "from": {
                                     "any": "key_code",
                                     "modifiers": { "optional": ["any"] }
@@ -363,6 +443,31 @@
                                 "to": [
                                     { "key_code": "f13" },
                                     { "from_event": true }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f13_layer",
+                                        "type": "variable_if",
+                                        "value": true
+                                    },
+                                    {
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Use the F13 layer as Command outside Ghostty",
+                                "from": {
+                                    "any": "key_code",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "from_event": true,
+                                        "modifiers": ["left_command"]
+                                    }
                                 ],
                                 "type": "basic"
                             }

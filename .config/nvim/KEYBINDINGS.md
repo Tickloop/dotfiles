@@ -26,13 +26,20 @@ familiar macOS shortcuts:
 
 | Shortcut | Action |
 | --- | --- |
-| `F13 p` | Quick open |
+| `F13 p` | Floating fuzzy project tree |
 | `F13 Shift-p` | Command palette |
 | `F13 f` | Find in the current file |
 | `F13 Shift-f` | Find in project files |
+| `F13 b` | Fuzzy search through open buffers |
+| `F13 Shift-b` | Close the current buffer |
 | `F13 s` | Save |
 | `F13 n` | New file |
-| `F13 w` | Close editor buffer |
+| `F13 \\` | Create a vertical Neovim split |
+| `F13 -` | Create a horizontal Neovim split |
+| `F13 w` | Close the current Neovim split |
+| `F13 t` | Create a Neovim tab |
+| `F13 [` / `F13 ]` | Previous / next Neovim tab |
+| `F13 q` | Close the current Neovim tab |
 | `F13 Shift-e` | Open file explorer |
 | `F13 c` | macOS copy (`Cmd-C`) |
 | `F13 v` | macOS paste (`Cmd-V`) |
@@ -41,10 +48,12 @@ familiar macOS shortcuts:
 | `F13 u` | `Ctrl-Left` |
 | `F13 o` | `Ctrl-Right` |
 
-For normal shortcut keys, Karabiner sends a fresh `F13` before every key press.
+In Ghostty, Karabiner sends a fresh `F13` before every unshifted key press.
 For `h/j/k/l`, Karabiner sends arrow keys directly. This makes the arrows repeat
 while Caps Lock remains held and also makes them work outside Neovim. It sends
 real macOS Command shortcuts for `c` and `v`, so copy and paste work system-wide.
+Outside Ghostty, unmatched layer keys act like normal Command shortcuts, so
+`F13 t`, `F13 w`, and `F13 \\` keep their usual behavior in Chrome and other apps.
 
 ## Personal shortcuts
 
@@ -57,10 +66,17 @@ real macOS Command shortcuts for `c` and `v`, so copy and paste work system-wide
 
 ## Ghostty notes
 
-Ghostty uses Command for its own actions. The Neovim shortcuts above use
-Control, so they do not need Ghostty overrides. Current Ghostty actions include
-`Cmd-N` for the next tab, `Cmd-F` for terminal search, `Cmd-Shift-P` for its
-command palette, and `Cmd-W` for closing the current terminal surface.
+Inside Ghostty, the shifted F13 layer controls terminal structure:
+
+| Shortcut | Ghostty action |
+| --- | --- |
+| `F13 Shift-\\` | Create a right-hand split |
+| `F13 Shift--` | Create a lower split |
+| `F13 Shift-t` | Create a Ghostty tab |
+| `F13 Shift-w` | Close the current Ghostty pane |
+
+`F13 n` remains Ghostty's next-tab shortcut. The unshifted forms are passed to
+Neovim, where they manage Neovim windows and tabs.
 
 ## Planned plugin upgrades
 
@@ -68,7 +84,7 @@ We are replacing the built-in tools one at a time:
 
 1. File picker and project search — `fzf-lua` added
 2. Color theme — `solaris.nvim` added
-3. File explorer
+3. File explorer — `snacks.nvim` trial on `F13 p`
 4. Syntax highlighting
 5. Language servers and completion
 6. Formatting and linting

@@ -30,6 +30,27 @@ require("fzf-lua").setup({
 })
 
 vim.pack.add({
+  "https://github.com/lewis6991/gitsigns.nvim",
+}, { confirm = false })
+
+require("gitsigns").setup({})
+
+vim.pack.add({
+  "https://github.com/folke/snacks.nvim",
+}, { confirm = false })
+
+require("snacks").setup({
+  explorer = {
+    enabled = true,
+    replace_netrw = false,
+  },
+  picker = {
+    enabled = true,
+    ui_select = false,
+  },
+})
+
+vim.pack.add({
   "https://github.com/Tickloop/solaris.nvim",
 }, { confirm = false })
 

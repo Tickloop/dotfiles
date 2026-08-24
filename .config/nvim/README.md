@@ -12,4 +12,6 @@ plugin plan.
 ## Installed plugins
 
 - `fzf-lua` — floating fuzzy search with file previews
+- `gitsigns.nvim` — Git change markers and hunk actions inside buffers
+- `snacks.nvim` — temporary fuzzy project-tree explorer
 - `solaris.nvim` — black and gold color theme
