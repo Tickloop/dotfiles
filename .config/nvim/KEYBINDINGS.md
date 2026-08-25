@@ -3,22 +3,6 @@
 This file records the shortcuts we want to keep while building the config one
 plugin at a time.
 
-## VS Code-style shortcuts
-
-| Shortcut | Action | Current implementation |
-| --- | --- | --- |
-| `Ctrl-P` | Quick open | Floating fzf file picker with preview |
-| `Ctrl-Shift-P` | Command palette | Floating fzf command picker |
-| `Ctrl-F` | Find in the current file | Floating fzf line picker |
-| `Ctrl-Shift-F` | Find in project files | Floating fzf live grep with preview |
-| `Ctrl-S` | Save | Built-in `:update` |
-| `Ctrl-N` | New file | Built-in `:enew` |
-| `Ctrl-Shift-W` | Close editor buffer | Built-in `:bdelete` |
-| `Ctrl-Shift-E` | Open file explorer | Built-in netrw `:Explore` |
-
-`Ctrl-W` stays as Neovim's window-command prefix. For example, `Ctrl-W h`
-moves to the window on the left. `Ctrl-Shift-W` closes the current buffer.
-
 ## Caps Lock through F13
 
 Karabiner uses Caps Lock as a repeatable F13 layer. These sequences mirror the
@@ -31,12 +15,11 @@ familiar macOS shortcuts:
 | `F13 f` | Find in the current file |
 | `F13 Shift-f` | Find in project files |
 | `F13 b` | Fuzzy search through open buffers |
-| `F13 Shift-b` | Close the current buffer |
 | `F13 s` | Save |
 | `F13 n` | New file |
 | `F13 \\` | Create a vertical Neovim split |
 | `F13 -` | Create a horizontal Neovim split |
-| `F13 w` | Close the current Neovim split |
+| `F13 w` | Delete the current buffer |
 | `F13 t` | Create a Neovim tab |
 | `F13 [` / `F13 ]` | Previous / next Neovim tab |
 | `F13 q` | Close the current Neovim tab |
@@ -48,6 +31,13 @@ familiar macOS shortcuts:
 | `F13 h/j/k/l` | Left/down/up/right arrow |
 | `F13 u` | `Ctrl-Left` |
 | `F13 o` | `Ctrl-Right` |
+
+Neovim action shortcuts in the tables above work from normal, insert, visual,
+and select modes. The floating-terminal toggle also works from terminal mode.
+Command-line and operator-pending modes keep their native behavior.
+
+`F13 w` removes the current buffer but preserves the split layout. Neovim's
+built-in `Ctrl-W c` still closes the current split when that is what you want.
 
 In Ghostty, Karabiner sends a fresh `F13` before every unshifted key press.
 For `h/j/k/l`, Karabiner sends arrow keys directly. This makes the arrows repeat
@@ -95,6 +85,7 @@ We are replacing the built-in tools one at a time:
 1. File picker and project search — `fzf-lua` added
 2. Color theme — `solaris.nvim` added
 3. File explorer — `snacks.nvim` trial on `F13 p`
-4. Syntax highlighting
-5. Language servers and completion
-6. Formatting and linting
+4. Treesitter syntax and code structure
+5. Language servers, project-wide symbol rename, and code actions
+6. Completion
+7. Formatting and linting

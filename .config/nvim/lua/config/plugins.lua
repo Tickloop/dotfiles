@@ -36,6 +36,15 @@ vim.pack.add({
 require("gitsigns").setup({})
 
 vim.pack.add({
+  "https://github.com/nvim-tree/nvim-web-devicons",
+}, { confirm = false })
+
+require("nvim-web-devicons").setup({
+  color_icons = true,
+  default = true,
+})
+
+vim.pack.add({
   "https://github.com/folke/snacks.nvim",
 }, { confirm = false })
 
