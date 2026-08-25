@@ -18,12 +18,60 @@ local function tree_open()
     auto_close = true,
     cwd = project_root(),
     focus = "input",
+    hidden = true,
     layout = { preset = "default" },
   })
 end
 
+local function smart_buffer_switch(selected, opts)
+  if not selected[1] then
+    return
+  end
+
+  local entry = require("fzf-lua.path").entry_to_file(selected[1], opts)
+  local current_tab = vim.api.nvim_get_current_tabpage()
+  local tabpages = { current_tab }
+
+  for _, tabpage in ipairs(vim.api.nvim_list_tabpages()) do
+    if tabpage ~= current_tab then
+      table.insert(tabpages, tabpage)
+    end
+  end
+
+  if entry.bufnr and vim.api.nvim_buf_is_valid(entry.bufnr) then
+    for _, tabpage in ipairs(tabpages) do
+      for _, window in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
+        if vim.api.nvim_win_get_buf(window) == entry.bufnr then
+          vim.api.nvim_set_current_tabpage(tabpage)
+          vim.api.nvim_set_current_win(window)
+          return
+        end
+      end
+    end
+  end
+
+  require("fzf-lua.actions").buf_edit(selected, opts)
+end
+
 local function buffer_picker()
-  require("fzf-lua").buffers()
+  local actions = require("fzf-lua.actions")
+
+  require("fzf-lua").buffers({
+    actions = {
+      ["enter"] = smart_buffer_switch,
+      ["ctrl-v"] = actions.buf_vsplit,
+    },
+    winopts = {
+      on_create = function(event)
+        vim.keymap.set("t", "<F13>\\", "<C-v>", {
+          buffer = event.bufnr,
+          desc = "Open Buffer in Vertical Split",
+          nowait = true,
+          silent = true,
+        })
+      end,
+    },
+  })
 end
 
 local function command_palette()
@@ -36,6 +84,18 @@ end
 
 local function find_in_files()
   require("fzf-lua").live_grep({ cwd = project_root() })
+end
+
+local function floating_terminal()
+  require("snacks").terminal.toggle(nil, {
+    cwd = project_root(),
+    win = {
+      border = "rounded",
+      height = 0.85,
+      position = "float",
+      width = 0.90,
+    },
+  })
 end
 
 map("n", "<C-p>", quick_open, { desc = "Quick Open" })
@@ -68,6 +128,7 @@ map("n", "<F13>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<F13>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<F13>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<F13>E", "<cmd>Explore<cr>", { desc = "Open Explorer" })
+map({ "n", "t" }, "<F13>:", floating_terminal, { desc = "Toggle Floating Terminal" })
 
 -- Window navigation. <C-w> remains available for every built-in window command.
 map("n", "<C-h>", "<C-w>h", vim.tbl_extend("force", silent, { desc = "Window left" }))

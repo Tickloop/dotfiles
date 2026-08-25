@@ -40,6 +40,7 @@ familiar macOS shortcuts:
 | `F13 t` | Create a Neovim tab |
 | `F13 [` / `F13 ]` | Previous / next Neovim tab |
 | `F13 q` | Close the current Neovim tab |
+| `F13 Shift-:` | Toggle a floating project terminal |
 | `F13 Shift-e` | Open file explorer |
 | `F13 c` | macOS copy (`Cmd-C`) |
 | `F13 v` | macOS paste (`Cmd-V`) |
@@ -55,6 +56,14 @@ real macOS Command shortcuts for `c` and `v`, so copy and paste work system-wide
 Outside Ghostty, unmatched layer keys act like normal Command shortcuts, so
 `F13 t`, `F13 w`, and `F13 \\` keep their usual behavior in Chrome and other apps.
 
+In the buffer picker, `Enter` focuses a window already showing the selected
+buffer, including one in another Neovim tab. If the buffer is not visible, it
+opens in the active window. Use `F13 \\` to open the selected buffer in a new
+vertical split, or `Ctrl-X` to close the selected buffer.
+
+The project tree shows dotfiles such as `.gitignore` by default. Press `H` in
+the explorer to toggle hidden files and `I` to toggle files ignored by Git.
+
 ## Personal shortcuts
 
 | Shortcut | Action |
@@ -63,6 +72,7 @@ Outside Ghostty, unmatched layer keys act like normal Command shortcuts, so
 | `x` / `xx` | Cut and copy the removed text |
 | `zz` | Toggle the fold under the cursor |
 | `Ctrl-H/J/K/L` | Move between windows |
+| `{line}G` or `:{line}` | Jump to a line, such as `42G` or `:42` |
 
 ## Ghostty notes
 
