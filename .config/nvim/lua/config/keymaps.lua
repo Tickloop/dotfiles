@@ -63,7 +63,7 @@ local function buffer_picker()
     },
     winopts = {
       on_create = function(event)
-        vim.keymap.set("t", "<F13>\\", "<C-v>", {
+        vim.keymap.set("t", "<C-\\>", "<C-v>", {
           buffer = event.bufnr,
           desc = "Open Buffer in Vertical Split",
           nowait = true,
@@ -87,6 +87,7 @@ local function find_in_files()
 end
 
 local function floating_terminal()
+  vim.print("running floating terminal!")
   require("snacks").terminal.toggle(nil, {
     cwd = project_root(),
     win = {
@@ -98,12 +99,12 @@ local function floating_terminal()
   })
 end
 
-map("n", "<C-p>", quick_open, { desc = "Quick Open" })
-map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
-map("n", "<C-f>", find_in_file, { desc = "Find in File" })
-map("n", "<C-S-f>", find_in_files, { desc = "Find in Files" })
-map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
-map("n", "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
+-- map("n", "<C-p>", quick_open, { desc = "Quick Open" })
+-- map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
+-- map("n", "<C-f>", find_in_file, { desc = "Find in File" })
+-- map("n", "<C-S-f>", find_in_files, { desc = "Find in Files" })
+-- map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
+-- map("n", "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Keep <C-w> as Neovim's window-command prefix; use Shift to close a buffer.
 map("n", "<C-S-w>", "<cmd>bdelete<cr>", { desc = "Close Editor" })
@@ -112,23 +113,23 @@ map("n", "<C-S-w>", "<cmd>bdelete<cr>", { desc = "Close Editor" })
 map("n", "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
 
 -- Karabiner sends these F13 sequences for Neovim-specific actions.
-map("n", "<F13>p", tree_open, { desc = "Project Tree" })
-map("n", "<F13>P", command_palette, { desc = "Command Palette" })
-map("n", "<F13>f", find_in_file, { desc = "Find in File" })
-map("n", "<F13>F", find_in_files, { desc = "Find in Files" })
-map("n", "<F13>b", buffer_picker, { desc = "Open Buffer" })
-map("n", "<F13>B", "<cmd>bdelete<cr>", { desc = "Close Buffer" })
-map({ "n", "i", "x", "s" }, "<F13>s", "<cmd>update<cr><esc>", { desc = "Save File" })
-map("n", "<F13>n", "<cmd>enew<cr>", { desc = "New File" })
-map("n", "<F13>\\", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
-map("n", "<F13>-", "<cmd>split<cr>", { desc = "Horizontal Split" })
-map("n", "<F13>w", "<cmd>close<cr>", { desc = "Close Window" })
-map("n", "<F13>t", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<F13>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-map("n", "<F13>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<F13>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<F13>E", "<cmd>Explore<cr>", { desc = "Open Explorer" })
-map({ "n", "t" }, "<F13>:", floating_terminal, { desc = "Toggle Floating Terminal" })
+map("n", "<C-p>", tree_open, { desc = "Project Tree" })
+map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
+map("n", "<C-f>", find_in_file, { desc = "Find in File" })
+map("n", "<C-S-f>", find_in_files, { desc = "Find in Files" })
+map("n", "<C-b>", buffer_picker, { desc = "Open Buffer" })
+map("n", "<C-S-b>", "<cmd>bdelete<cr>", { desc = "Close Buffer" })
+map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
+map("n", "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<C-\\>", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
+map("n", "<C-->", "<cmd>split<cr>", { desc = "Horizontal Split" })
+map("n", "<C-w>", "<cmd>close<cr>", { desc = "Close Window" })
+map("n", "<C-t>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<C-[>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<C-]>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<C-q>", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
+map({ "n", "t" }, "<C-S-;>", floating_terminal, { desc = "Toggle Floating Terminal" })
 
 -- Window navigation. <C-w> remains available for every built-in window command.
 map("n", "<C-h>", "<C-w>h", vim.tbl_extend("force", silent, { desc = "Window left" }))

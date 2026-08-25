@@ -14,7 +14,7 @@ keybind = super+o=previous_tab
 keybind = super+shift+n=new_window
 
 # visuals
-theme = Synthwave
+theme = synthwave
 macos-titlebar-style = tabs
 background-opacity = 0.98
 background-blur = 20
