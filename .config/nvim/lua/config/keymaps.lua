@@ -92,9 +92,9 @@ local function floating_terminal()
     cwd = project_root(),
     win = {
       border = "rounded",
-      height = 0.85,
+      height = 0.80,
       position = "float",
-      width = 0.90,
+      width = 0.80,
     },
   })
 end
