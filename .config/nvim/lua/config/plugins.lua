@@ -82,3 +82,16 @@ require("ibl").setup({
     show_end = false,
   },
 })
+
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+}, { confirm = false })
+
+require("nvim-treesitter").setup({})
+require("nvim-treesitter").install({
+  "lua",
+})
+
+vim.pack.add({
+  "https://github.com/neovim/nvim-lspconfig",
+}, { confirm = false })

@@ -93,12 +93,13 @@ local function floating_terminal()
     cwd = project_root(),
     win = {
       border = "rounded",
-      height = 0.85,
+      height = 0.80,
       position = "float",
-      width = 0.90,
+      width = 0.80,
     },
   })
 end
+
 
 -- Karabiner sends these F13 sequences for Neovim-specific actions.
 map(action_modes, "<F13>p", tree_open, { desc = "Project Tree" })
