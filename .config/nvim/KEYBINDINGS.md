@@ -64,6 +64,30 @@ the explorer to toggle hidden files and `I` to toggle files ignored by Git.
 | `Ctrl-H/J/K/L` | Move between windows |
 | `{line}G` or `:{line}` | Jump to a line, such as `42G` or `:42` |
 
+## Language features
+
+Neovim provides these shortcuts when a language server is attached:
+
+| Shortcut | Action |
+| --- | --- |
+| `K` | Show documentation and type information |
+| `Ctrl-]` | Go to definition |
+| `Ctrl-W ]` | Open the definition in a split |
+| `grr` | Find references |
+| `gri` | Go to implementation |
+| `grt` | Go to type definition |
+| `grn` | Rename a symbol across the project |
+| `gra` | Show code actions; also works on a visual selection |
+| `gO` | Show symbols in the current file |
+| `grx` | Run the code lens under the cursor |
+| `Ctrl-S` | Show signature help while inserting text |
+| `Ctrl-X Ctrl-O` | Request completion while inserting text |
+| `[d` / `]d` | Previous / next diagnostic |
+| `[D` / `]D` | First / last diagnostic in the file |
+| `Ctrl-W d` | Show the diagnostic under the cursor |
+
+Go uses `gopls`, Python uses `basedpyright`, and TypeScript uses `ts_ls`.
+
 ## Ghostty notes
 
 Inside Ghostty, the shifted F13 layer controls terminal structure:
@@ -85,7 +109,8 @@ We are replacing the built-in tools one at a time:
 1. File picker and project search — `fzf-lua` added
 2. Color theme — `solaris.nvim` added
 3. File explorer — `snacks.nvim` trial on `F13 p`
-4. Treesitter syntax and code structure
-5. Language servers, project-wide symbol rename, and code actions
+4. Treesitter syntax and code structure — added for Lua
+5. Language servers, project-wide symbol rename, and code actions — added for
+   Go, Python, and TypeScript
 6. Completion
 7. Formatting and linting
