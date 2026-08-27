@@ -149,3 +149,138 @@ map("n", "zz", "za", { desc = "Toggle fold" })
 
 -- ESC out of search
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Close search highlight" })
+
+
+-- MARK: code naviation config
+local function toggle_hover_docs()
+  local buffer = vim.api.nvim_get_current_buf()
+  local preview = vim.b[buffer].lsp_floating_preview
+
+  if preview and vim.api.nvim_win_is_valid(preview) then
+    vim.api.nvim_win_close(preview, true)
+    return
+  end
+
+  vim.lsp.buf.hover({
+    border = "rounded"
+  })
+end
+
+local function peek_implementations()
+  require("fzf-lua").lsp_implementations({
+    jump1 = false,
+  })
+end
+
+local function peek_type_definitions()
+  require("fzf-lua").lsp_typedefs({
+    jump1 = false,
+  })
+end
+
+local function list_references()
+  local source_window = vim.api.nvim_get_current_win()
+  vim.lsp.buf.references(nil, {
+    on_list = function(list)
+      if vim.api.nvim_win_is_valid(source_window) then
+        vim.fn.setloclist(source_window, {}, " ", list)
+      end
+    end,
+  })
+  require("fzf-lua").lsp_references({
+    jump1 = false,
+  })
+end
+
+local function cycle_references(offset)
+  local list = vim.fn.getloclist(0, {
+    idx = 0,
+    size = 0,
+  })
+
+  if list.size == 0 then
+    vim.notify("No cached references", vim.log.levels.INFO)
+    return
+  end
+
+  local current = math.max(list.idx, 1)
+  local target = ((current - 1 + offset) % list.size) + 1
+
+  vim.cmd(target .. "ll")
+end
+
+local diagnostic_severities = {
+  vim.diagnostic.severity.ERROR,
+  vim.diagnostic.severity.WARN,
+}
+
+local function show_diagnostic()
+  local buffer = vim.api.nvim_get_current_buf()
+  local preview = vim.b[buffer].lsp_floating_preview
+
+  if preview and vim.api.nvim_win_is_valid(preview) then
+    vim.api.nvim_win_close(preview, true)
+    return
+  end
+
+  vim.diagnostic.open_float({
+    scope = "cursor",
+    focus = false,
+    border = "rounded",
+    severity = diagnostic_severities,
+  })
+end
+
+local function list_diagnostics()
+  require("fzf-lua").diagnostics_document()
+end
+
+local diagnostic_float_options = {
+  border = "rounded",
+  focus = false,
+}
+
+local function next_diagnostic()
+  vim.diagnostic.jump({
+    count = 1,
+    float = diagnostic_float_options,
+    severity = diagnostic_severities,
+  })
+end
+
+local function previous_diagnostic()
+  vim.diagnostic.jump({
+    count = -1,
+    float = diagnostic_float_options,
+    severity = diagnostic_severities,
+  })
+end
+
+map("n", "<C-u>", "<C-o>", { desc = "Navigate Backward" })
+map("n", "<C-o>", "<C-i>", { desc = "Navigate Forward" })
+map("n", "<C-i>", "<C-u>", { desc = "Navigate Upward by half screen" })
+map("n", "<C-S-i>", "<C-d>", { desc = "Navigate Downward by half screen" })
+
+map("n", "gk", toggle_hover_docs, { desc = "Toggle Documentation" })
+map("n", "gK", vim.lsp.buf.signature_help, { desc = "Show Function signature" })
+
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
+
+map("n", "gi", peek_implementations, { desc = "Peek Implementations" })
+map("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+
+map("n", "gt", peek_type_definitions, { desc = "Peek Type Definitions" })
+map("n", "gT", vim.lsp.buf.type_definition, { desc = "Go to Type Definition" })
+
+map("n", "gR", list_references, { desc = "List References" })
+map("n", "]r", function() cycle_references(1) end, { desc = "Next Reference" })
+map("n", "[r", function() cycle_references(-1) end, { desc = "Previous Reference" })
+
+map({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "Code Actions" })
+map("n", "grn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+
+map("n", "gw", show_diagnostic, { desc = "Show Diagnostic" })
+map("n", "ge", list_diagnostics, { desc = "List File Diagnostics" })
+map("n", "]w", next_diagnostic, { desc = "Next Diagnostic" })
+map("n", "[w", previous_diagnostic, { desc = "Previous Diagnostic" })
