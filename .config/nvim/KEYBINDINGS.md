@@ -62,31 +62,42 @@ the explorer to toggle hidden files and `I` to toggle files ignored by Git.
 | `x` / `xx` | Cut and copy the removed text |
 | `zz` | Toggle the fold under the cursor |
 | `Ctrl-H/J/K/L` | Move between windows |
+| `Ctrl-U` | Navigate backward through the jumplist |
+| `Ctrl-O` | Navigate forward through the jumplist |
+| `Ctrl-I` | Scroll upward by half a screen |
+| `Ctrl-Shift-I` | Scroll downward by half a screen |
+| `gc` / `gcc` | Toggle comments for a motion or selection / current line |
 | `{line}G` or `:{line}` | Jump to a line, such as `42G` or `:42` |
 
 ## Language features
 
-Neovim provides these shortcuts when a language server is attached:
+These shortcuts use the language server attached to the current buffer:
 
 | Shortcut | Action |
 | --- | --- |
-| `K` | Show documentation and type information |
-| `Ctrl-]` | Go to definition |
-| `Ctrl-W ]` | Open the definition in a split |
-| `grr` | Find references |
-| `gri` | Go to implementation |
-| `grt` | Go to type definition |
+| `gk` | Toggle documentation; moving the cursor closes it |
+| `gK` | Show the current function signature and parameter |
+| `gd` | Go to definition |
+| `gD` | Go to declaration |
+| `gi` | Peek at implementations in an fzf picker |
+| `gI` | Go directly to an implementation |
+| `gt` | Peek at type definitions in an fzf picker |
+| `gT` | Go directly to a type definition |
+| `gR` | List project-wide references and cache them for navigation |
+| `[r` / `]r` | Previous / next cached reference, wrapping at either end |
 | `grn` | Rename a symbol across the project |
-| `gra` | Show code actions; also works on a visual selection |
+| `ga` | Show code actions; also works on a visual selection |
+| `gw` | Toggle the warning or error under the cursor |
+| `[w` / `]w` | Previous / next warning or error, with a popup |
+| `ge` | List all diagnostics in the current file |
 | `gO` | Show symbols in the current file |
 | `grx` | Run the code lens under the cursor |
 | `Ctrl-S` | Show signature help while inserting text |
 | `Ctrl-X Ctrl-O` | Request completion while inserting text |
-| `[d` / `]d` | Previous / next diagnostic |
-| `[D` / `]D` | First / last diagnostic in the file |
-| `Ctrl-W d` | Show the diagnostic under the cursor |
 
-Go uses `gopls`, Python uses `basedpyright`, and TypeScript uses `ts_ls`.
+The built-in `K`, `grr`, `gri`, `grt`, `gra`, `[d`, `]d`, `[D`, `]D`, and
+`Ctrl-W d` LSP mappings also remain available. Go uses `gopls`, Python uses
+`basedpyright`, and TypeScript uses `ts_ls`.
 
 ## Ghostty notes
 
