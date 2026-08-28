@@ -76,8 +76,8 @@ plugins=(
 	tmux
 	kubectl
 )
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
+#ZSH_TMUX_AUTOSTART=true
+#ZSH_TMUX_AUTOCONNECT=false
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -106,10 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/arya/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -130,21 +126,19 @@ export VPS=82.25.85.90
 alias clip="xclip -selection clipboard"
 alias la="ls -hAlts"
 
-. "$HOME/.local/bin/env"
-
 alias gs="git status"
 alias cat="batcat --color=always"
 
 # fnm
 FNM_PATH="/home/arya/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
+if [ -x "$FNM_PATH/fnm" ]; then
   export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env --use-on-cd --shell zsh)"
 fi
-eval "$(fnm env --use-on-cd --shell zsh)"
 
 export PATH="$PATH:/home/arya/go/bin"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 alias myip="ip -4 -br a"
 
@@ -158,4 +152,8 @@ alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 if [ -f "$HOME/.secrets" ]; then
 	source "$HOME/.secrets"
+fi
+
+if [[ -o interactive && -r "$HOME/.banner.sh" && "${DEVTOOLS_BANNER:-1}" != "0" ]]; then
+	source "$HOME/.banner.sh"
 fi
