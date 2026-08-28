@@ -15,6 +15,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "standard",
+      },
+    },
+  },
+})
+
 vim.lsp.enable({
   "gopls",
   "basedpyright",

@@ -81,6 +81,13 @@ vim.pack.add({
 require("nvim-treesitter").setup({})
 require("nvim-treesitter").install({
   "lua",
+  "python",
+  "go",
+  "gomod",
+  "gowork",
+  "javascript",
+  "typescript",
+  "tsx",
 })
 
 vim.pack.add({
