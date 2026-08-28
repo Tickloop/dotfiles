@@ -157,3 +157,7 @@ fi
 if [[ -o interactive && -r "$HOME/.banner.sh" && "${DEVTOOLS_BANNER:-1}" != "0" ]]; then
 	source "$HOME/.banner.sh"
 fi
+
+if [[ -z "${VIRTUAL_ENV:-}" && -f "$HOME/.venv/bin/activate" ]]; then
+	source "$HOME/.venv/bin/activate"
+fi
