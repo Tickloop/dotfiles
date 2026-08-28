@@ -27,3 +27,9 @@ if vim.fn.executable("rg") == 1 then
   opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git"
   opt.grepformat = "%f:%l:%c:%m"
 end
+
+-- for zz to use treesitter fold toggle
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldlevel = 99
+opt.foldlevelstart = 99

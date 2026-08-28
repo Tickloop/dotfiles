@@ -273,4 +273,17 @@ map("n", "ge", list_diagnostics, { desc = "List File Diagnostics" })
 map("n", "]w", next_diagnostic, { desc = "Next Diagnostic" })
 map("n", "[w", previous_diagnostic, { desc = "Previous Diagnostic" })
 
+-- keeps text selected after indent actions
+map("x", ">", ">gv", { desc = "Indent and Reselect" })
+map("x", "<", "<gv", { desc = "Outdent and Reselect" })
 
+-- makes shift+nav work like selection
+map("n", "H", "Vh", { desc = "Select Left" })
+map("n", "J", "Vj", { desc = "Select Down" })
+map("n", "K", "Vk", { desc = "Select Up" })
+map("n", "L", "Vl", { desc = "Select Right" })
+
+map("x", "H", "h", { desc = "Extend Selection Left" })
+map("x", "J", "j", { desc = "Extend Selection Down" })
+map("x", "K", "k", { desc = "Extend Selection Up" })
+map("x", "L", "l", { desc = "Extend Selection Right" })

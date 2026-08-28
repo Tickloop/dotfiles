@@ -10,9 +10,34 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = group,
-  pattern = { "lua" },
-  desc = "Enable Tree-sitter highlighting for Lua",
+  pattern = {
+    "lua",
+    "python",
+    "go",
+    "gomod",
+    "gowork",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+  },
+  desc = "Enable Tree-sitter highlighting",
   callback = function()
     vim.treesitter.start()
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  pattern = {
+    "lua",
+    "typescript",
+    "typescriptreact",
+  },
+  desc = "Use two-space indentation",
+  callback = function(event)
+    vim.bo[event.buf].expandtab = true
+    vim.bo[event.buf].tabstop = 2
+    vim.bo[event.buf].shiftwidth = 2
+    vim.bo[event.buf].softtabstop = 2
   end,
 })
