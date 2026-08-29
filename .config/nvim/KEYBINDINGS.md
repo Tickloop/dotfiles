@@ -7,8 +7,8 @@ plugin at a time.
 
 | Shortcut | Action | Current implementation |
 | --- | --- | --- |
-| `Ctrl-P` | Quick open | Floating fzf file picker with preview |
-| `Ctrl-Shift-P` | Command palette | Floating fzf command picker |
+| `Ctrl-P` | Floating fuzzy project tree | Snacks explorer |
+| `Ctrl-Shift-P` | Quick open | Floating fzf file picker with preview |
 | `Ctrl-F` | Find in the current file | Floating fzf line picker |
 | `Ctrl-Shift-F` | Find in project files | Floating fzf live grep with preview |
 | `Ctrl-S` | Save | Built-in `:update` |
@@ -18,6 +18,11 @@ plugin at a time.
 
 `Ctrl-W` stays as Neovim's window-command prefix. For example, `Ctrl-W h`
 moves to the window on the left. `Ctrl-Shift-W` closes the current buffer.
+
+The action shortcuts work from normal, insert, visual, and select modes. The
+floating-terminal toggle also works from terminal mode. `Ctrl-[` remains
+normal-mode-only because terminals and Neovim treat it as Escape in other
+modes.
 
 In the buffer picker, `Enter` focuses a window already showing the selected
 buffer, including one in another Neovim tab. If the buffer is not visible, it

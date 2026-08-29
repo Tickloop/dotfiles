@@ -1,5 +1,7 @@
 local map = vim.keymap.set
 local silent = { silent = true }
+local action_modes = { "n", "i", "x", "s" }
+local terminal_toggle_modes = { "n", "i", "x", "s", "t" }
 
 local function project_root()
   return vim.fs.root(0, { ".git", "package.json", "pyproject.toml", "lua" }) or vim.fn.getcwd()
@@ -115,37 +117,26 @@ local function floating_terminal()
   })
 end
 
--- map("n", "<C-p>", quick_open, { desc = "Quick Open" })
--- map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
--- map("n", "<C-f>", find_in_file, { desc = "Find in File" })
--- map("n", "<C-S-f>", find_in_files, { desc = "Find in Files" })
--- map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
--- map("n", "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
-
--- Keep <C-w> as Neovim's window-command prefix; use Shift to close a buffer.
-map("n", "<C-S-w>", "<cmd>bdelete<cr>", { desc = "Close Editor" })
-
--- Custom VS Code shortcuts
-map("n", "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
-
 -- Linux uses Control combinations in place of the macOS F13 layer.
-map("n", "<C-p>", tree_open, { desc = "Project Tree" })
-map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
-map("n", "<C-f>", find_in_file, { desc = "Find in File" })
-map("n", "<C-S-f>", find_in_files, { desc = "Find in Files" })
-map("n", "<C-b>", buffer_picker, { desc = "Open Buffer" })
-map("n", "<C-S-b>", "<cmd>bdelete<cr>", { desc = "Close Buffer" })
-map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
-map("n", "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
-map("n", "<C-\\>", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
-map("n", "<C-->", "<cmd>split<cr>", { desc = "Horizontal Split" })
+map(action_modes, "<C-p>", tree_open, { desc = "Project Tree" })
+map(action_modes, "<C-S-p>", quick_open, { desc = "Quick Open" })
+map(action_modes, "<C-f>", find_in_file, { desc = "Find in File" })
+map(action_modes, "<C-S-f>", find_in_files, { desc = "Find in Files" })
+map(action_modes, "<C-b>", buffer_picker, { desc = "Open Buffer" })
+map(action_modes, "<C-S-b>", "<cmd>bdelete<cr>", { desc = "Close Buffer" })
+map(action_modes, "<C-S-w>", "<cmd>bdelete<cr>", { desc = "Close Editor" })
+map(action_modes, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
+map(action_modes, "<C-n>", "<cmd>enew<cr>", { desc = "New File" })
+map(action_modes, "<C-\\>", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
+map(action_modes, "<C-->", "<cmd>split<cr>", { desc = "Horizontal Split" })
 map("n", "<C-w>", "<cmd>close<cr>", { desc = "Close Window" })
-map("n", "<C-t>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map(action_modes, "<C-t>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+-- <C-[> is Escape outside normal mode, so this one cannot use action_modes.
 map("n", "<C-[>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-map("n", "<C-]>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<C-q>", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
-map({ "n", "t" }, "<C-S-;>", floating_terminal, { desc = "Toggle Floating Terminal" })
+map(action_modes, "<C-]>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map(action_modes, "<C-q>", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map(action_modes, "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
+map(terminal_toggle_modes, "<C-S-;>", floating_terminal, { desc = "Toggle Floating Terminal" })
 
 -- Window navigation. <C-w> remains available for every built-in window command.
 map("n", "<C-h>", "<C-w>h", vim.tbl_extend("force", silent, { desc = "Window left" }))
