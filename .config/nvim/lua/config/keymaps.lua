@@ -20,7 +20,7 @@ local function tree_open()
     auto_close = true,
     cwd = project_root(),
     exclude = { "node_modules" },
-    focus = "list",
+    focus = "input",
     hidden = true,
     layout = { preset = "default", preview = true },
     matcher = {
