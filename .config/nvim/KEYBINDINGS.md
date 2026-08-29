@@ -21,8 +21,7 @@ moves to the window on the left. `Ctrl-Shift-W` closes the current buffer.
 
 The action shortcuts work from normal, insert, visual, and select modes. The
 floating-terminal toggle also works from terminal mode. `Ctrl-[` remains
-normal-mode-only because terminals and Neovim treat it as Escape in other
-modes.
+normal-mode-only so Escape keeps its normal behavior in every other mode.
 
 In the buffer picker, `Enter` focuses a window already showing the selected
 buffer, including one in another Neovim tab. If the buffer is not visible, it

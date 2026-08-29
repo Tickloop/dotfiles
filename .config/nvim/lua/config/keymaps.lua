@@ -131,7 +131,6 @@ map(action_modes, "<C-\\>", "<cmd>vsplit<cr>", { desc = "Vertical Split" })
 map(action_modes, "<C-->", "<cmd>split<cr>", { desc = "Horizontal Split" })
 map("n", "<C-w>", "<cmd>close<cr>", { desc = "Close Window" })
 map(action_modes, "<C-t>", "<cmd>tabnew<cr>", { desc = "New Tab" })
--- <C-[> is Escape outside normal mode, so this one cannot use action_modes.
 map("n", "<C-[>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map(action_modes, "<C-]>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map(action_modes, "<C-q>", "<cmd>tabclose<cr>", { desc = "Close Tab" })
