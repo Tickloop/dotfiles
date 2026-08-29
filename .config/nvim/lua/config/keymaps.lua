@@ -19,9 +19,26 @@ local function tree_open()
   require("snacks").picker.explorer({
     auto_close = true,
     cwd = project_root(),
+    exclude = { "node_modules" },
     focus = "input",
     hidden = true,
-    layout = { preset = "default" },
+    layout = { preset = "default", preview = true },
+    matcher = {
+      fuzzy = true,
+      sort_empty = false,
+    },
+    win = {
+      input = {
+        keys = {
+          ["<F13>/"] = { "toggle_focus", mode = { "n", "i" } },
+        },
+      },
+      list = {
+        keys = {
+          ["<F13>/"] = "toggle_focus",
+        },
+      },
+    },
   })
 end
 
@@ -102,8 +119,8 @@ end
 
 
 -- Karabiner sends these F13 sequences for Neovim-specific actions.
+map(action_modes, "<F13>P", quick_open, { desc = "Quick Open" })
 map(action_modes, "<F13>p", tree_open, { desc = "Project Tree" })
-map(action_modes, "<F13>P", command_palette, { desc = "Command Palette" })
 map(action_modes, "<F13>f", find_in_file, { desc = "Find in File" })
 map(action_modes, "<F13>F", find_in_files, { desc = "Find in Files" })
 map(action_modes, "<F13>b", buffer_picker, { desc = "Open Buffer" })
@@ -260,13 +277,23 @@ map("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
 
 map("n", "gt", peek_type_definitions, { desc = "Peek Type Definitions" })
 map("n", "gT", vim.lsp.buf.type_definition, { desc = "Go to Type Definition" })
+map("n", "gp", function()
+	require("fzf-lua").lsp_live_workspace_symbols()
+end, { desc = "Search Project Symbols" })
 
-map("n", "gR", list_references, { desc = "List References" })
+-- Replace Neovim's default gr-prefixed LSP mappings with a smaller set.
+for _, lhs in ipairs({ "grn", "grr", "gri", "grt", "grx" }) do
+	vim.keymap.del("n", lhs)
+end
+vim.keymap.del("n", "gra")
+vim.keymap.del("x", "gra")
+
+map("n", "gr", list_references, { desc = "List References" })
 map("n", "]r", function() cycle_references(1) end, { desc = "Next Reference" })
 map("n", "[r", function() cycle_references(-1) end, { desc = "Previous Reference" })
 
 map({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "Code Actions" })
-map("n", "grn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+map("n", "gn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 
 map("n", "gw", show_diagnostic, { desc = "Show Diagnostic" })
 map("n", "ge", list_diagnostics, { desc = "List File Diagnostics" })

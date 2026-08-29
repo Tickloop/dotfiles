@@ -11,7 +11,7 @@ familiar macOS shortcuts:
 | Shortcut | Action |
 | --- | --- |
 | `F13 p` | Floating fuzzy project tree |
-| `F13 Shift-p` | Command palette |
+| `F13 Shift-p` | Quick open file picker |
 | `F13 f` | Find in the current file |
 | `F13 Shift-f` | Find in project files |
 | `F13 b` | Fuzzy search through open buffers |
@@ -51,8 +51,10 @@ buffer, including one in another Neovim tab. If the buffer is not visible, it
 opens in the active window. Use `F13 \\` to open the selected buffer in a new
 vertical split, or `Ctrl-X` to close the selected buffer.
 
-The project tree shows dotfiles such as `.gitignore` by default. Press `H` in
-the explorer to toggle hidden files and `I` to toggle files ignored by Git.
+The project tree opens with focus on its fuzzy search box and previews the
+selected file on the right. `F13 /` toggles focus between the search box and
+file list. `node_modules` is always hidden. Press `H` to toggle hidden files
+and `I` to toggle files ignored by Git.
 
 ## Personal shortcuts
 
@@ -83,20 +85,21 @@ These shortcuts use the language server attached to the current buffer:
 | `gI` | Go directly to an implementation |
 | `gt` | Peek at type definitions in an fzf picker |
 | `gT` | Go directly to a type definition |
-| `gR` | List project-wide references and cache them for navigation |
+| `gr` | List project-wide references and cache them for navigation |
 | `[r` / `]r` | Previous / next cached reference, wrapping at either end |
-| `grn` | Rename a symbol across the project |
+| `gn` | Rename a symbol across the project |
 | `ga` | Show code actions; also works on a visual selection |
 | `gw` | Toggle the warning or error under the cursor |
 | `[w` / `]w` | Previous / next warning or error, with a popup |
 | `ge` | List all diagnostics in the current file |
 | `gO` | Show symbols in the current file |
-| `grx` | Run the code lens under the cursor |
+| `gp` | Search project symbols live; `Ctrl-G` switches to local fuzzy filtering |
 | `Ctrl-S` | Show signature help while inserting text |
 | `Ctrl-X Ctrl-O` | Request completion while inserting text |
 
-The built-in `K`, `grr`, `gri`, `grt`, `gra`, `[d`, `]d`, `[D`, `]D`, and
-`Ctrl-W d` LSP mappings also remain available. Go uses `gopls`, Python uses
+The built-in `K`, `[d`, `]d`, `[D`, `]D`, and `Ctrl-W d` LSP mappings also
+remain available. The default `grn`, `gra`, `grr`, `gri`, `grt`, and `grx`
+mappings are intentionally disabled. Go uses `gopls`, Python uses
 `basedpyright`, and TypeScript uses `ts_ls`.
 
 ## Ghostty notes
