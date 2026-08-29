@@ -278,6 +278,9 @@ map("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
 
 map("n", "gt", peek_type_definitions, { desc = "Peek Type Definitions" })
 map("n", "gT", vim.lsp.buf.type_definition, { desc = "Go to Type Definition" })
+map("n", "gp", function()
+  require("fzf-lua").lsp_live_workspace_symbols()
+end, { desc = "Search Project Symbols" })
 
 -- Replace Neovim's default gr-prefixed LSP mappings with a smaller set.
 for _, lhs in ipairs({ "grn", "grr", "gri", "grt", "grx" }) do

@@ -70,6 +70,7 @@ These shortcuts use the language server attached to the current buffer:
 | `[w` / `]w` | Previous / next warning or error, with a popup |
 | `ge` | List all diagnostics in the current file |
 | `gO` | Show symbols in the current file |
+| `gp` | Search symbols across the project |
 | `Ctrl-X Ctrl-O` | Request completion while inserting text |
 
 The built-in `K`, `[d`, `]d`, `[D`, `]D`, and `Ctrl-W d` LSP mappings also
