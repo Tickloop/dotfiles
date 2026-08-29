@@ -22,7 +22,7 @@ local function tree_open()
     exclude = { "node_modules" },
     focus = "list",
     hidden = true,
-    layout = { preset = "default" },
+    layout = { preset = "default", preview = true },
     matcher = {
       fuzzy = true,
       sort_empty = false,

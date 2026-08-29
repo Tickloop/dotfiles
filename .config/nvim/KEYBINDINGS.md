@@ -28,10 +28,10 @@ buffer, including one in another Neovim tab. If the buffer is not visible, it
 opens in the active window. Use `Ctrl-\\` to open the selected buffer in a new
 vertical split, or `Ctrl-X` to close the selected buffer.
 
-The project tree opens with focus on its file list and uses fuzzy matching when
-you search. `Ctrl-/` toggles focus between the file list and search box.
-`node_modules` is always hidden. Press `H` to toggle hidden files and `I` to
-toggle files ignored by Git.
+The project tree opens with focus on its file list, uses fuzzy matching when
+you search, and previews the selected file on the right. `Ctrl-/` toggles focus
+between the file list and search box. `node_modules` is always hidden. Press
+`H` to toggle hidden files and `I` to toggle files ignored by Git.
 
 ## Personal shortcuts
 
