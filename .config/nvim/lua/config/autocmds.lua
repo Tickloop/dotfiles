@@ -8,6 +8,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  group = group,
+  desc = "Reload files changed outside Neovim",
+  command = "checktime",
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   group = group,
   pattern = {

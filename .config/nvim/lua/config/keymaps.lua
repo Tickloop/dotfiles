@@ -17,9 +17,26 @@ local function tree_open()
   require("snacks").picker.explorer({
     auto_close = true,
     cwd = project_root(),
-    focus = "input",
+    exclude = { "node_modules" },
+    focus = "list",
     hidden = true,
     layout = { preset = "default" },
+    matcher = {
+      fuzzy = true,
+      sort_empty = false,
+    },
+    win = {
+      input = {
+        keys = {
+          ["<C-/>"] = { "toggle_focus", mode = { "n", "i" } },
+        },
+      },
+      list = {
+        keys = {
+          ["<C-/>"] = "toggle_focus",
+        },
+      },
+    },
   })
 end
 
@@ -87,7 +104,6 @@ local function find_in_files()
 end
 
 local function floating_terminal()
-  vim.print("running floating terminal!")
   require("snacks").terminal.toggle(nil, {
     cwd = project_root(),
     win = {
@@ -112,7 +128,7 @@ map("n", "<C-S-w>", "<cmd>bdelete<cr>", { desc = "Close Editor" })
 -- Custom VS Code shortcuts
 map("n", "<C-S-e>", "<cmd>Explore<cr>", { desc = "Open Explorer" })
 
--- Karabiner sends these F13 sequences for Neovim-specific actions.
+-- Linux uses Control combinations in place of the macOS F13 layer.
 map("n", "<C-p>", tree_open, { desc = "Project Tree" })
 map("n", "<C-S-p>", command_palette, { desc = "Command Palette" })
 map("n", "<C-f>", find_in_file, { desc = "Find in File" })
@@ -273,12 +289,19 @@ map("n", "gI", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
 map("n", "gt", peek_type_definitions, { desc = "Peek Type Definitions" })
 map("n", "gT", vim.lsp.buf.type_definition, { desc = "Go to Type Definition" })
 
-map("n", "gR", list_references, { desc = "List References" })
+-- Replace Neovim's default gr-prefixed LSP mappings with a smaller set.
+for _, lhs in ipairs({ "grn", "grr", "gri", "grt", "grx" }) do
+  vim.keymap.del("n", lhs)
+end
+vim.keymap.del("n", "gra")
+vim.keymap.del("x", "gra")
+
+map("n", "gr", list_references, { desc = "List References" })
 map("n", "]r", function() cycle_references(1) end, { desc = "Next Reference" })
 map("n", "[r", function() cycle_references(-1) end, { desc = "Previous Reference" })
 
 map({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "Code Actions" })
-map("n", "grn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+map("n", "gn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 
 map("n", "gw", show_diagnostic, { desc = "Show Diagnostic" })
 map("n", "ge", list_diagnostics, { desc = "List File Diagnostics" })

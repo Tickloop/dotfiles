@@ -24,8 +24,10 @@ buffer, including one in another Neovim tab. If the buffer is not visible, it
 opens in the active window. Use `Ctrl-\\` to open the selected buffer in a new
 vertical split, or `Ctrl-X` to close the selected buffer.
 
-The project tree shows dotfiles such as `.gitignore` by default. Press `H` in
-the explorer to toggle hidden files and `I` to toggle files ignored by Git.
+The project tree opens with focus on its file list and uses fuzzy matching when
+you search. `Ctrl-/` toggles focus between the file list and search box.
+`node_modules` is always hidden. Press `H` to toggle hidden files and `I` to
+toggle files ignored by Git.
 
 ## Personal shortcuts
 
@@ -56,22 +58,24 @@ These shortcuts use the language server attached to the current buffer:
 | `gI` | Go directly to an implementation |
 | `gt` | Peek at type definitions in an fzf picker |
 | `gT` | Go directly to a type definition |
-| `gR` | List project-wide references and cache them for navigation |
+| `gr` | List project-wide references and cache them for navigation |
 | `[r` / `]r` | Previous / next cached reference, wrapping at either end |
-| `grn` | Rename a symbol across the project |
+| `gn` | Rename a symbol across the project |
 | `ga` | Show code actions; also works on a visual selection |
 | `gw` | Toggle the warning or error under the cursor |
 | `[w` / `]w` | Previous / next warning or error, with a popup |
 | `ge` | List all diagnostics in the current file |
 | `gO` | Show symbols in the current file |
-| `grx` | Run the code lens under the cursor |
 | `Ctrl-X Ctrl-O` | Request completion while inserting text |
 
-The built-in `K`, `grr`, `gri`, `grt`, `gra`, `[d`, `]d`, `[D`, `]D`, and
-`Ctrl-W d` LSP mappings also remain available. Linux keeps `Ctrl-]` for the
-next tab and `Ctrl-S` for saving, so `gd` and `gK` provide definition and
-signature access without those conflicts. Go uses `gopls`, Python uses
-`basedpyright`, and TypeScript uses `ts_ls`.
+The built-in `K`, `[d`, `]d`, `[D`, `]D`, and `Ctrl-W d` LSP mappings also
+remain available. The default `grn`, `gra`, `grr`, `gri`, `grt`, and `grx`
+mappings are intentionally disabled. Linux keeps `Ctrl-]` for the next tab and
+`Ctrl-S` for saving, so `gd` and `gK` provide definition and signature access
+without those conflicts. Go uses `gopls`, Python uses `basedpyright`, and
+TypeScript uses `ts_ls`.
+
+In Ghostty, `Alt-[` and `Alt-]` move to the previous and next terminal pane.
 
 ## Planned plugin upgrades
 

@@ -23,9 +23,21 @@ require("fzf-lua").setup({
   files = {
     hidden = true,
     formatter = "path.filename_first",
+    fd_opts = "--color=never --type f --type l"
+      .. " --exclude .git"
+      .. " --exclude node_modules"
+      .. " --exclude .venv"
+      .. " --exclude __pycache__",
   },
   grep = {
     formatter = "path.filename_first",
+    rg_opts = "--column --line-number --no-heading --color=always --smart-case"
+      .. " --max-columns=4096"
+      .. " --glob '!**/.git/**'"
+      .. " --glob '!**/node_modules/**'"
+      .. " --glob '!**/.venv/**'"
+      .. " --glob '!**/__pycache__/**'"
+      .. " -e",
   },
 })
 

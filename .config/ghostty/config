@@ -8,6 +8,8 @@ keybind = alt+d=close_surface
 # Navigation
 keybind = alt+j=goto_split:next
 keybind = alt+k=goto_split:previous
+keybind = alt+[=goto_split:previous
+keybind = alt+]=goto_split:next
 
 keybind = alt+n=next_tab
 keybind = alt+o=previous_tab
