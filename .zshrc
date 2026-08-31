@@ -136,6 +136,7 @@ if [ -x "$FNM_PATH/fnm" ]; then
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
+export PATH="/home/arya/.local/share/fnm/node-versions/v24.14.0/installation/bin:$PATH"
 export PATH="$PATH:/home/arya/go/bin"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:/usr/local/go/bin"
