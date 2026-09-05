@@ -74,11 +74,7 @@ vim.pack.add({
   "https://github.com/Tickloop/solaris.nvim",
 }, { confirm = false })
 
-require("solaris").setup({
-  on_colors = function(colors)
-    colors.bg = "#000000"
-  end,
-})
+require("solaris").setup({})
 vim.cmd.colorscheme("solaris")
 
 vim.pack.add({
