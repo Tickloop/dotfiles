@@ -34,7 +34,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "solaris.nvim": {
-      "rev": "b4da69d412dceebcb25864cdda432e918fd0347b",
+      "rev": "99eef0ccf88c3e5c411b399ed69d88e859b2f991",
       "src": "https://github.com/Tickloop/solaris.nvim"
     }
   }
