@@ -15,6 +15,7 @@ plugin at a time.
 | `Ctrl-N` | New file | Built-in `:enew` |
 | `Ctrl-Shift-W` | Close editor buffer | Built-in `:bdelete` |
 | `Ctrl-Shift-E` | Open file explorer | Built-in netrw `:Explore` |
+| `Ctrl-;` | Toggle a floating project terminal | Snacks terminal |
 
 `Ctrl-W` stays as Neovim's window-command prefix. For example, `Ctrl-W h`
 moves to the window on the left. `Ctrl-Shift-W` closes the current buffer.
@@ -40,6 +41,7 @@ and `I` to toggle files ignored by Git.
 | `d` / `dd` | Delete without copying |
 | `x` / `xx` | Cut and copy the removed text |
 | `zz` | Toggle the fold under the cursor |
+| `;` | Enter command mode |
 | `Ctrl-H/J/K/L` | Move between windows |
 | `Ctrl-U` | Navigate backward through the jumplist |
 | `Ctrl-O` | Navigate forward through the jumplist |
