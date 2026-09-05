@@ -314,3 +314,6 @@ map("x", "H", "h", { desc = "Extend Selection Left" })
 map("x", "J", "j", { desc = "Extend Selection Down" })
 map("x", "K", "k", { desc = "Extend Selection Up" })
 map("x", "L", "l", { desc = "Extend Selection Right" })
+
+map("n", ">", ">>", { desc = "Indent current line" })
+map("n", "<", "<<", { desc = "Outdent current line" })
