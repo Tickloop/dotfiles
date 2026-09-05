@@ -94,12 +94,7 @@ require("ibl").setup({
   },
 })
 
-vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-}, { confirm = false })
-
-require("nvim-treesitter").setup({})
-require("nvim-treesitter").install({
+local treesitter_languages = {
   "lua",
   "python",
   "go",
@@ -108,7 +103,30 @@ require("nvim-treesitter").install({
   "javascript",
   "typescript",
   "tsx",
+}
+
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(event)
+    if event.data.spec.name == "nvim-treesitter"
+        and event.data.kind == "update" then
+      if not event.data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+
+      require("nvim-treesitter")
+        .update(treesitter_languages)
+        :wait(300000)
+    end
+  end,
 })
+
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+}, { confirm = false })
+
+local treesitter = require("nvim-treesitter")
+treesitter.setup({})
+treesitter.install(treesitter_languages):wait(300000)
 
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
