@@ -105,6 +105,14 @@ local function find_in_files()
   require("fzf-lua").live_grep({ cwd = project_root() })
 end
 
+local function git_diff()
+  require("fzf-lua").git_diff({ cwd = project_root() })
+end
+
+local function preview_git_hunk()
+  require("gitsigns").preview_hunk()
+end
+
 local function floating_terminal()
   require("snacks").terminal.toggle(nil, {
     cwd = project_root(),
@@ -123,6 +131,7 @@ map(action_modes, "<F13>P", quick_open, { desc = "Quick Open" })
 map(action_modes, "<F13>p", tree_open, { desc = "Project Tree" })
 map(action_modes, "<F13>f", find_in_file, { desc = "Find in File" })
 map(action_modes, "<F13>F", find_in_files, { desc = "Find in Files" })
+map(action_modes, "<F13>g", git_diff, { desc = "Git Diff" })
 map(action_modes, "<F13>b", buffer_picker, { desc = "Open Buffer" })
 map(action_modes, "<F13>s", "<cmd>update<cr><esc>", { desc = "Save File" })
 map(action_modes, "<F13>n", "<cmd>enew<cr>", { desc = "New File" })
@@ -268,6 +277,7 @@ map("n", "<C-i>", "<C-u>", { desc = "Navigate Upward by half screen" })
 map("n", "<C-S-i>", "<C-d>", { desc = "Navigate Downward by half screen" })
 
 map("n", "gk", toggle_hover_docs, { desc = "Toggle Documentation" })
+map("n", "gh", preview_git_hunk, { desc = "Preview Git Hunk" })
 map("n", "gK", vim.lsp.buf.signature_help, { desc = "Show Function signature" })
 
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })

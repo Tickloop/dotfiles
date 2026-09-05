@@ -45,7 +45,15 @@ vim.pack.add({
   "https://github.com/lewis6991/gitsigns.nvim",
 }, { confirm = false })
 
-require("gitsigns").setup({})
+require("gitsigns").setup({
+  preview_config = {
+    border = "rounded",
+    style = "minimal",
+    relative = "cursor",
+    row = 0,
+    col = 1,
+  },
+})
 
 vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",

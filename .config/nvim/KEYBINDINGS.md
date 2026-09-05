@@ -14,6 +14,7 @@ familiar macOS shortcuts:
 | `F13 Shift-p` | Quick open file picker |
 | `F13 f` | Find in the current file |
 | `F13 Shift-f` | Find in project files |
+| `F13 g` | Open the floating Git diff picker |
 | `F13 b` | Fuzzy search through open buffers |
 | `F13 s` | Save |
 | `F13 n` | New file |
@@ -70,6 +71,7 @@ and `I` to toggle files ignored by Git.
 | `Ctrl-I` | Scroll upward by half a screen |
 | `Ctrl-Shift-I` | Scroll downward by half a screen |
 | `gc` / `gcc` | Toggle comments for a motion or selection / current line |
+| `gh` | Preview the Git hunk under the cursor |
 | `{line}G` or `:{line}` | Jump to a line, such as `42G` or `:42` |
 
 ## Language features
