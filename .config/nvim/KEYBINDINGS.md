@@ -23,7 +23,7 @@ familiar macOS shortcuts:
 | `F13 t` | Create a Neovim tab |
 | `F13 [` / `F13 ]` | Previous / next Neovim tab |
 | `F13 q` | Close the current Neovim tab |
-| `F13 Shift-:` | Toggle a floating project terminal |
+| `F13 ;` | Toggle a floating project terminal |
 | `F13 Shift-e` | Open file explorer |
 | `F13 c` | macOS copy (`Cmd-C`) |
 | `F13 v` | macOS paste (`Cmd-V`) |
@@ -63,6 +63,7 @@ and `I` to toggle files ignored by Git.
 | `d` / `dd` | Delete without copying |
 | `x` / `xx` | Cut and copy the removed text |
 | `zz` | Toggle the fold under the cursor |
+| `;` | Enter command mode |
 | `Ctrl-H/J/K/L` | Move between windows |
 | `Ctrl-U` | Navigate backward through the jumplist |
 | `Ctrl-O` | Navigate forward through the jumplist |

@@ -134,7 +134,7 @@ map(action_modes, "<F13>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map(action_modes, "<F13>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map(action_modes, "<F13>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map(action_modes, "<F13>E", "<cmd>Explore<cr>", { desc = "Open Explorer" })
-map(terminal_toggle_modes, "<F13>:", floating_terminal, { desc = "Toggle Floating Terminal" })
+map(terminal_toggle_modes, "<F13>;", floating_terminal, { desc = "Toggle Floating Terminal" })
 
 -- Window navigation. <C-w> remains available for every built-in window command.
 map("n", "<C-h>", "<C-w>h", vim.tbl_extend("force", silent, { desc = "Window left" }))
@@ -154,6 +154,7 @@ map("n", "zz", "za", { desc = "Toggle fold" })
 
 -- ESC out of search
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Close search highlight" })
+map("n", ";", ":", { desc = "Enter Command Mode" })
 
 
 -- MARK: code naviation config
