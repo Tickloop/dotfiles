@@ -11,6 +11,7 @@ plugin at a time.
 | `Ctrl-Shift-P` | Quick open | Floating fzf file picker with preview |
 | `Ctrl-F` | Find in the current file | Floating fzf line picker |
 | `Ctrl-Shift-F` | Find in project files | Floating fzf live grep with preview |
+| `Ctrl-G` | Open Git changes | Floating fzf Git diff picker |
 | `Ctrl-S` | Save | Built-in `:update` |
 | `Ctrl-N` | New file | Built-in `:enew` |
 | `Ctrl-Shift-W` | Close editor buffer | Built-in `:bdelete` |
@@ -48,6 +49,7 @@ and `I` to toggle files ignored by Git.
 | `Ctrl-I` | Scroll upward by half a screen |
 | `Ctrl-Shift-I` | Scroll downward by half a screen |
 | `gc` / `gcc` | Toggle comments for a motion or selection / current line |
+| `gh` | Preview the Git hunk under the cursor |
 | `{line}G` or `:{line}` | Jump to a line, such as `42G` or `:42` |
 
 ## Language features
