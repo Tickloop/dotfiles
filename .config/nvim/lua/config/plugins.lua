@@ -74,7 +74,11 @@ vim.pack.add({
   "https://github.com/Tickloop/solaris.nvim",
 }, { confirm = false })
 
-require("solaris").setup({})
+require("solaris").setup({
+  on_highlights = function(highlights)
+    highlights.CursorLine.bg = "#0f0f0f"
+  end,
+})
 vim.cmd.colorscheme("solaris")
 
 vim.pack.add({
