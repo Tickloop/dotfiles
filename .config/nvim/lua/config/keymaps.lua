@@ -152,7 +152,6 @@ map("n", "<C-j>", "<C-w>j", vim.tbl_extend("force", silent, { desc = "Window dow
 map("n", "<C-k>", "<C-w>k", vim.tbl_extend("force", silent, { desc = "Window up" }))
 map("n", "<C-l>", "<C-w>l", vim.tbl_extend("force", silent, { desc = "Window right" }))
 
-
 -- MARK: Delete without yanking
 map({ "n", "v" }, "d", '"_d')
 map("n", "dd", '"_dd')
@@ -161,6 +160,7 @@ map("n", "xx", "dd")
 
 -- MARK: Toggle fold
 map("n", "zz", "za", { desc = "Toggle fold" })
+map({ "n", "x", "o" }, "w", "b", { desc = "Previous word" })
 
 -- ESC out of search
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Close search highlight" })
@@ -330,3 +330,6 @@ map("x", "L", "l", { desc = "Extend Selection Right" })
 
 map("n", ">", ">>", { desc = "Indent current line" })
 map("n", "<", "<<", { desc = "Outdent current line" })
+
+map("n", "]h", function() require("gitsigns").next_hunk() end, { desc = "Next Git hunk" })
+map("n", "[h", function() require("gitsigns").prev_hunk() end, { desc = "Previous Git hunk" })

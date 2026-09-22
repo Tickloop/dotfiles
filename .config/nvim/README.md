@@ -16,3 +16,4 @@ plugin plan.
 - `indent-blankline.nvim` — vertical indentation and nesting guides
 - `snacks.nvim` — temporary fuzzy project-tree explorer
 - `solaris.nvim` — black and gold color theme
+- `mini.nvim` - matching brackets in code
