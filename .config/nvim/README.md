@@ -17,3 +17,4 @@ plugin plan.
 - `nvim-web-devicons` — colored Nerd Font icons for files and directories
 - `snacks.nvim` — temporary fuzzy project-tree explorer
 - `solaris.nvim` — black and gold color theme
+- `mini.nvim` - matching brackets in code
